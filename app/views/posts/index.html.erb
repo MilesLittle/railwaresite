@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+<div class="container  text-center">
+
+<h1>Posts</h1>
+<div id="posts" class="row justify-content-center" >
+  <% @posts.each_slice(2) do |posts_row| %>
+    <div class="row ">
+      <% posts_row.each do |post| %>
+        <div class="col-md-6">
+          <%= render partial: 'posts/cardPost', locals: {post: post, render_body: false} %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+</div>
+

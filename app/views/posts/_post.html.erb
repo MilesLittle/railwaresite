@@ -1,0 +1,28 @@
+<div id="<%= dom_id post %>">
+  
+
+<p class="text-color">
+  <b><h3><%= post.title %></h3></b><small><%=post.category.name %></small>
+ <br></br>
+    
+   
+  
+  <small class="secondary-color">- <%= post.created_at.strftime("%B %e, %Y") %></small>
+</p>
+
+
+
+
+
+  
+ 
+
+  <% if render_body %>
+  <p>
+    
+    <%= display_content(post.content) %>
+  </p>
+  <% end %>
+
+</div>
+

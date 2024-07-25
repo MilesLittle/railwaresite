@@ -1,0 +1,98 @@
+<% if current_user %>
+  <p><%= @user.username %>'s Account </p>
+  <% if @posts.present? %>
+    <div class="overflow-auto">
+      <div id="posts" class="row justify-content-center">
+        <% @posts.each_slice(2) do |posts_row| %>
+          <div class="row">
+            <% posts_row.each do |post| %>
+              <div class="col-md-6">
+                <%= render partial: 'posts/cardPost', locals: {post: post, render_body: false} %>
+                
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="d-flex">
+    <div class="comments-container flex-grow-1">
+      <% if @comments.present? %>
+        <h2>Comments</h2>
+        <% @comments.group_by(&:post).each do |post, post_comments| %>
+          <div class="scroll">
+            <h3><u><%= link_to post.title, post_path(post), class: 'nav-link' %></u></h3>
+            <% post_comments.each do |comment| %>
+              <div class="list-group-item" id="comment_<%= comment.id %>">
+                <p class="mb-1"><%= comment.body %></p>
+                <p class="text-muted small">Posted on <%= comment.created_at.strftime('%B %e, %Y at %l:%M %p') %></p>
+                <% if current_user == comment.user %>
+                  <div class="btn-group" role="group">
+                    <form id="deleteForm_<%= comment.id %>" action="<%= comment_path(comment, post_id: post.id) %>" method="post">
+                      <input type="hidden" name="_method" value="delete">
+                      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                      <button type="button" onclick="showConfirmation(<%= comment.id %>)" class="btn btn-danger btn-sm" id="deleteBtn_<%= comment.id %>">Delete Comment</button>
+                      <button type="button" onclick="confirmDeletion(<%= comment.id %>)" class="btn btn-danger btn-sm" id="confirmBtn_<%= comment.id %>" style="display: none;">Confirm Delete</button>
+                    </form>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>No comments to display</p>
+      <% end %>
+    </div>
+
+    <div class="inbox-container">
+      <h2 class="text-center">Inbox</h2>
+      <% if @inbox_comments.present? %>
+       
+        <div id="inboxContainer" class="scroll">
+          <% @inbox_comments.each do |comment| %>
+            <div class="list-group-item">
+              <p class="mb-1"><strong>From: </strong><%= comment.user.username %></p>
+              <p class="mb-1"><%= comment.body %></p>
+              <p class="text-muted small">Received on <%= comment.created_at.in_time_zone("Central Time (US & Canada)").strftime("%B %d, %Y %H:%M:%S") %></p>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>Inbox is empty</p>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <h1>No profile to display</h1>
+<% end %>
+
+<%= link_to 'Logout', logout_path, method: :delete, class: 'btn btn-outline-primary mt-3' %>
+<% if current_user.admin? %>
+<%= link_to 'Create a Post', new_post_path %>
+
+<% end %>
+
+<script>
+  function showConfirmation(commentId) {
+    // Hide the delete button
+    document.getElementById(`deleteBtn_${commentId}`).style.display = 'none';
+
+    // Show the confirmation button
+    document.getElementById(`confirmBtn_${commentId}`).style.display = 'inline-block';
+  }
+
+  function confirmDeletion(commentId) {
+    // Perform the actual deletion by submitting the form
+    document.getElementById(`deleteForm_${commentId}`).submit();
+  }
+
+  const inboxToggleButton = document.getElementById('inboxToggleButton');
+  const inboxContainer = document.getElementById('inboxContainer');
+
+  inboxToggleButton.addEventListener('click', function() {
+    inboxContainer.style.display = inboxContainer.style.display === 'none' ? 'block' : 'none';
+  });
+</script>

@@ -1,0 +1,10 @@
+<% if parent_comment.present? %>
+  <%= form_with(model: [parent_comment, parent_comment.replies.build], local: true) do |form| %>
+    <%= form.hidden_field :parent_comment_id, value: parent_comment.id %>
+    <div>
+      <%= form.label :body %>
+      <%= form.text_area :body %>
+    </div>
+    <%= form.submit 'Add Reply' %>
+  <% end %>
+<% end %>

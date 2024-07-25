@@ -1,0 +1,38 @@
+<!-- _comment.html.erb -->
+
+<div class="comment">
+<% if comment.present? && comment.user.present? && comment.body.present? %>
+<p>
+  <strong>Commented by:</strong>
+    <u>
+    <% if current_user == comment.user %>
+      <%= link_to comment.user.username, user_path(comment.user) , class:'nav-link' %>
+    <% else %>
+      <%= link_to comment.user.username, show_other_user_path(comment.user),class:'nav-link'  %>
+    <% end %>
+    </u>
+    <%= comment.created_at.in_time_zone("Central Time (US & Canada)").strftime("%B %d, %Y %H:%M:%S")  %>
+</p>
+
+<p>
+
+  <strong>Content:</strong>
+  <%= comment.body %>
+
+</p>
+
+<% if comment.user == current_user %>
+    <div class="btn-group" role="group">
+      <form id="deleteCommentForm_<%= comment.id %>" action="<%= comment_path(comment) %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <button type="button" onclick="showConfirmation(<%= comment.id %>)" class="btn btn-danger btn-sm" id="deleteCommentBtn_<%= comment.id %>">Delete Comment</button>
+        <button type="button" onclick="confirmDeletion(<%= comment.id %>)" class="btn btn-danger btn-sm" id="confirmCommentBtn_<%= comment.id %>" style="display: none;">Confirm Delete</button>
+      </form>
+    </div>
+  <% end %>
+  <% end %>
+  
+</div>
+
+

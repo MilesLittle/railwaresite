@@ -1,0 +1,39 @@
+<p style="color: green"><%= notice %></p>
+<div>
+<%= render partial: 'posts/post', locals: { post: @post, render_body: true } %>
+
+
+<div>
+
+  <% if current_user %>
+    
+    <%= render partial: 'comments/form', post: @post%>
+  <% else %>
+    <p>Please <%= link_to 'sign in', "/login" %> to leave a comment.</p>
+    <% end %>
+</div>
+<div id="comments">
+<% @post.comments.where.not(created_at: nil).each do |comment| %>
+  
+  <%= render partial: 'comments/comment', locals: { comment: comment, current_user: current_user} %>
+<% end %>
+
+</div>
+</div>
+
+<script>
+  
+
+  function showConfirmation(commentId) {
+    // Hide the delete button
+    document.getElementById(`deleteCommentBtn_${commentId}`).style.display = 'none';
+
+    // Show the confirmation button
+    document.getElementById(`confirmCommentBtn_${commentId}`).style.display = 'inline-block';
+  }
+
+  function confirmDeletion(commentId) {
+    // Perform the actual deletion by submitting the form
+    document.getElementById(`deleteCommentForm_${commentId}`).submit();
+  }
+</script>

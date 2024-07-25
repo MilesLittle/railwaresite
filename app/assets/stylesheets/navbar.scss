@@ -1,0 +1,23 @@
+/* app/assets/stylesheets/navbar.css */
+
+.navbar {
+    background-color: #ffffff;
+    
+  }
+  
+  .navbar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar-list li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .navbar-list li a {
+    color: white;
+    text-decoration: none;
+  }
+  

@@ -1,0 +1,52 @@
+<%= form_with(model: post, data: {
+  controller: "editor"
+}) do |form| %>
+  <% if post.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+  <div>
+  <%= form.label :description, style: "display: block" %>
+  <%= form.text_field :description %>
+</div>
+  <div>
+  <%= form.label :cover_image, 'Cover Image', style: 'display: block;' %>
+  <%= form.file_field :cover_image, class: 'form-control' %>
+</div>
+
+ <div>
+ <%= form.label :category_id, style: "display: block" %>
+ <%= form.collection_select(:category_id, @categories, :id, :name, prompt:true) %>
+ </div>
+ 
+ <div>
+ <%= form.label :hidden %>
+ <%= form.check_box :hidden %>
+</div>
+
+
+  <%= form.hidden_field :content, id: 'post_content_hidden' %>
+
+  <div 
+  id="post_content"
+  data-editor-target="post_content"
+  >
+  <%# Needs to have the post content if it exists already %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

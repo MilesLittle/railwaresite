@@ -1,0 +1,39 @@
+<!-- app/views/users/show_other.html.erb -->
+<h1><%= @other_user.username %>'s Profile</h1>
+<p>Username: <%= @other_user.username %></p>
+
+<h2>Comments</h2>
+<% @comments.group_by(&:post).each do |post, post_comments| %>
+  <div class="post-comments">
+    <h3><%= link_to post.title, post_path(post) %></h3>
+    
+    <% post_comments.each do |comment| %>
+      <div class="comment">
+        <p>
+          <strong>
+            <%= link_to_commenter(comment) %>
+          :</strong> 
+          <%= comment.body %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<h2>Posts</h2>
+<% if @posts.present? %>
+<div class="overflow-auto">
+  <div id="posts" class="row justify-content-center">
+    <% @posts.each_slice(2) do |posts_row| %>
+      <div class="row">
+        <% posts_row.each do |post| %>
+          <div class="col-md-6">
+            <%= render partial: 'posts/cardPost', locals: {post: post, render_body: false} %>
+            
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% end %>

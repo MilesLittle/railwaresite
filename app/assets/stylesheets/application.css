@@ -1,0 +1,16 @@
+@import 'bootstrap';
+@import 'custom';
+
+
+
+
+.navbar-color {
+  background-color: #CFB5E5;
+}
+
+
+.cover-image {
+  max-width: 100%; /* Limit the maximum width to 100% of its container */
+  max-height: 200px; /* Limit the maximum height to 200 pixels */
+  /* Add other styling as needed */
+}

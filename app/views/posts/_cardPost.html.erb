@@ -1,0 +1,33 @@
+
+<div class="rounded-border-sub">
+<div id="<%= dom_id(post) %>">
+  <div class="card " style="width: 34rem; height: 20rem;">
+   
+  <% if post.cover_image.attached? %>
+  <%= image_tag post.cover_image, class: "card-img-top mx-auto rounded", style:  "max-width: 200px; max-height: 100px; border: 2px solid orange;", alt: "Card image cap" %>
+
+
+    <% else %>
+      <img class="card-img-top" src="..." alt="Card image cap">
+    <% end %>
+    <div class="card-body">
+      <h5 class="card-title">
+        <b>
+        <u class="underlined-text">
+          <p class="text-color"><%= post.title %></p>
+          </u>
+        </b>
+        <small > <%= post.category.name %></small><br/>
+        <small > <%= post.created_at.strftime("%B %e, %Y") %></small></br>
+        <small> By:  <%=  post.user.username %></small>
+      </h5>
+      <p><%= post.description %></p>
+      <%= link_to "Read more", post, class: "btn btn-custom" %>
+      <% if current_user == post.user && current_user.admin? %>
+                      <%= link_to 'Edit', edit_post_path(post), class: 'btn btn-primary btn-sm' %>
+                      <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+                      <% end %>
+    </div>
+  </div>
+</div>
+</div>

@@ -1,0 +1,54 @@
+<nav class="navbar navbar-expand-lg navbar-light ">
+  <div class="container-fluid">
+    <%= link_to 'RailWare Team', root_path, class: 'navbar-brand' %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <!-- Move "All Posts" link to the top of the list -->
+        <li class="nav-item">
+          <%= link_to 'All Posts', posts_path, class: 'nav-link' %>
+        </li>
+
+        <!-- Dropdown menu for categories -->
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownCategories" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownCategories">
+            <!-- Iterate over categories and create links -->
+            <% Category.all.each do |category| %>
+              <li><%= link_to category.name, category_posts_path(category), class: 'dropdown-item' %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav">
+        <% if current_user %>
+          <!-- User dropdown menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= current_user.username %>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+              <li><%= link_to 'Account', user_path(current_user), class: 'dropdown-item' %></li>
+              <li><%= link_to 'Logout', logout_path, method: :delete, class: 'dropdown-item' %></li>
+            </ul>
+          </li>
+        <% else %>
+          <!-- Login and Register links -->
+          <li class="nav-item">
+            <%= link_to 'Login', login_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Register', register_path, class: 'nav-link' %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

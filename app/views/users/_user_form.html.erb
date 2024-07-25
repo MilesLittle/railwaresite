@@ -1,0 +1,29 @@
+
+<div class="container justify-content-center">
+<%= form_with(model: @user, url: register_path, method: :post) do |form| %>
+  <div>
+  <div style="color: red">
+  <% @user.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+  <% end %>
+  </div>
+  
+  <div>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+    
+  </div>
+<div>
+  <div>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div>
+    <%= form.label :confirm_password %>
+    <%= form.password_field :password_confirmation %>
+  </div>
+</div>
+  <%= form.submit 'Register' %>
+<% end %>
+</div></div>

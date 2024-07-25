@@ -1,0 +1,25 @@
+<div class=" justify-content-center text-center">
+
+<% if current_user %>
+  <h3><%=current_user.username%></h3>
+<% else %>
+<h1> First Time User?</h1>
+<%= link_to "Login", login_path, class: "btn btn-custom" %> or <%= link_to "Register", register_path, class: "btn btn-custom" %>
+<% end %>
+</div>
+<div class="container text-center">
+
+<h2>Recent Posts</h2>
+<div id="posts" class="row justify-content-center" >
+  <% @posts.each_slice(2) do |posts_row| %>
+    <div class="row ">
+    
+      <% posts_row.each do |post| %>
+        <div class="col-md-6">
+          <%= render partial: 'posts/cardPost', locals: {post: post, render_body: false} %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+</div>

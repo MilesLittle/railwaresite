@@ -1,0 +1,93 @@
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import '../../../node_modules/bootstrap-icons/font/bootstrap-icons';
+
+@import 'posts';
+
+body {
+    background-color: #ffffff;
+  }
+  
+  .text-color {
+    color: #0e3506
+  }
+
+  .secondary-color{
+    color: #b19ff9
+  }
+
+  .primary-color {
+color: #a16ae8
+  }
+
+  .accent-color {
+    color: #fea303,
+    
+  }
+  
+  .text-color-background {
+    background-color: #0e3506
+  }
+
+  .secondary-color-background{
+    background-color: #b19ff9
+  }
+
+  .primary-color-background {
+    background-color: #a16ae8
+  }
+
+  .accent-color-background {
+    background-color: #fea303,
+    
+  }
+  
+
+
+  .rounded-border {
+    border: 3px solid #fea303; /* Adjust the border color and width as needed */
+    border-radius: 10px; /* Adjust the border radius to control the roundness of the corners */
+  }
+.post-border {
+  border: 2px solid #d8d2d2;
+
+}
+.post-background {
+  background-color: #ffffff;
+}
+  .rounded-border-sub {
+    border: 1px solid #ffffff; /* Adjust the border color and width as needed */
+    border-radius: 10px; /* Adjust the border radius to control the roundness of the corners */
+  }
+  .underlined-text {
+    border-bottom: 1px solid #fea303; /* Change the color code to the desired underline color */
+  }
+
+  .btn-custom {
+    color: #0e3506; /* Text color */
+    background-color: #fea303; /* Background color */
+    border-color: #b19ff9; /* Border color */
+  }
+  
+  /* Hover effect for custom button */
+  .btn-custom:hover {
+    color: #0e3506;
+    background-color: #b19ff9; /* Change background color on hover */
+    border-color: #fea303; /* Change border color on hover */
+  }
+
+  .footer {
+    .giticon, .twicon, .insticon ,.yticon{
+      display: inline-block;
+    }
+  }
+
+  .scroll {
+    margin: 4px, 4px;
+            padding: 4px;
+            background-color: rgb(255, 255, 255);
+            width: 500px;
+            height: 110px;
+            overflow-x: hidden;
+            overflow-y: auto;
+            text-align: justify;
+  }

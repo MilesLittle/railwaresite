@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RWT</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <%= stylesheet_link_tag 'navbar' %>
+  
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
+
+    <%= stylesheet_link_tag 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css' %>
+    <%= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js' %>
+
+    <%= stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload' %>
+   
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+  <%= render 'layouts/navbar' %>
+  
+    
+<%= yield %>
+   
+    
+  
+  
+
+  
+  
+  
+     
+    
+   
+    
+
+  
+    <%= javascript_include_tag 'comments' %>
+ 
+
+
+  
+  
+    <div class="text-color">
+    <div class="footer border-top pt-3">
+    
+    <div class="yticon">
+    <a href="https://www.youtube.com/channel/UCsTmb403A3A3Ak3x_nUEq5w" target="_blank">
+      <%= image_tag 'icons/yticon.png'%>
+      </a>
+    </div>
+    <div class="twicon">
+    <a href="https://twitter.com/DetectiveYuukii" target="_blank">
+      <%= image_tag 'icons/X_icon.png'%>
+      </a>
+    </div>
+    <div class="insticon">
+      <%= image_tag 'icons/insticon.png'%>
+    </div>
+
+    <div class="giticon">
+    <a href="https://github.com/MilesLittle" target="_blank">
+    <%= image_tag 'icons/giticon.png'%>
+  </div>
+  </div>
+</div>
+  </body>
+</html>
