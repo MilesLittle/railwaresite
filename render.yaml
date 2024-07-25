@@ -16,7 +16,7 @@ services:
       - key: DATABASE_URL
         fromDatabase:
           name: railwarestudios
-          property: postgres://postgres:yuki566@localhost:5432/citrus_galaxy_development
+          property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
       - key: WEB_CONCURRENCY
