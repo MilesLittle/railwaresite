@@ -36,11 +36,14 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.save
         @post.save_post_images
+        
         format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
+          @categories = Category.all
+    render :new, status: :unprocessable_entity
       end
     end
   end
