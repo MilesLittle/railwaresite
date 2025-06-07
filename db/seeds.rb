@@ -10,8 +10,3 @@
 Inbox.destroy_all
 User.destroy_all
 
-User.create!([{
-    username: "DetectiveYuki",
-    password: "MalYuki566!",
-    admin: true
-}])
