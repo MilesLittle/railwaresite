@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.2"
+ruby "3.2.1"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
@@ -25,6 +25,10 @@ gem "bcrypt"
 gem 'bootstrap'
 gem 'sassc-rails'
 gem 'jquery-rails'
+
+
+gem 'rails_12factor', group: :production
+
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 
