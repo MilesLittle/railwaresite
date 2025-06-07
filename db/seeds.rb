@@ -10,3 +10,32 @@
 Inbox.destroy_all
 User.destroy_all
 
+User.create!([{
+    username: "DetectiveYuki",
+    password: "MalYuki566!",
+    admin: true
+}])
+
+Category.create!([{
+    name: "About"
+}])
+
+Category.create([{
+    name: "Games"
+}])
+Category.create([{
+    name: "Anime"
+}])
+Category.create([{
+    name: "Music"
+}])
+Category.create([{
+    name: "Movies"
+}])
+
+Category.create([{
+    name: "Books" 
+}])
+Category.create([{
+    name: "Projects" 
+}])
